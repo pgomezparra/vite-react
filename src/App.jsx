@@ -1,25 +1,16 @@
 import React from "react";
-import { Heading } from "@chakra-ui/react";
-import * as API from "./services/launches";
-import { LaunchItem } from "./components/LaunchItem";
+import { Routes, Route } from "react-router-dom";
+
+import { LaunchList } from "./components/LaunchList";
+import { LaunchDetails } from "./components/LaunchDetails";
 
 export function App() {
-  const [launches, setLaunches] = React.useState([]);
-
-  React.useEffect(() => {
-    API.getAllLaunches().then(setLaunches);
-  }, []);
-
   return (
     <React.Fragment>
-      <Heading as="h1" size="lg" m={4}>
-        SpaceX Launches
-      </Heading>
-      <section>
-        {launches.map((launch) => (
-          <LaunchItem key={launch.flight_number} launch={launch} />
-        ))}
-      </section>
+      <Routes>
+        <Route path="/" element={<LaunchList />} />
+        <Route path="launch/:launchId" element={<LaunchDetails />} />
+      </Routes>
     </React.Fragment>
   );
 }
