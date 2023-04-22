@@ -1,5 +1,6 @@
 import React from "react";
 import { Heading } from "@chakra-ui/react";
+import { v4 as uuidv4 } from "uuid";
 
 import * as API from "../services/launches";
 import { LaunchItem } from "./LaunchItem";
@@ -21,7 +22,7 @@ export function LaunchList() {
       ) : (
         <section>
           {launches.map((launch) => (
-            <LaunchItem key={launch.flight_number} launch={launch} />
+            <LaunchItem key={uuidv4()} launch={launch} />
           ))}
         </section>
       )}
